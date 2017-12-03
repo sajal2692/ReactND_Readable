@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { connect } from 'react-redux'
-
+import { fetchAllPosts } from '../actions/postsAction'
+import { fetchCategories } from '../actions/categoriesAction'
 import * as API from '../utils/api'
+
+
 
 class App extends Component {
 
+  //TODO: Below mounting calls will be moved to their appropriate places later
   componentWillMount() {
-    API.getCategories().then((categories) => {
-      console.log(categories)
-    })
+    this.props.dispatch(fetchAllPosts())
+    this.props.dispatch(fetchCategories())
   }
 
   render() {
@@ -23,9 +26,11 @@ class App extends Component {
   }
 }
 
+//Can use ownprops here for something
 function mapStateToProps(state) {
   return {
-    state
+    posts: state.posts,
+    categories: state.categoris
   }
 }
 

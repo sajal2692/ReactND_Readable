@@ -1,14 +1,15 @@
-// import {
-//   ADD_COMMENT,
-//   DELETE_COMMENT
-// } from '../actions/commentsAction'
+import {
+  RECEIVE_CATEGORIES
+} from '../actions/categoriesAction'
 
 const initialCategoriesState = {}
 
 function categories (state = initialCategoriesState, action) {
-  const { category, active } = action
+  const { categories, active } = action
 
   switch (action.type) {
+    case RECEIVE_CATEGORIES:
+      return categories
     default:
       return state
   }

@@ -14,3 +14,42 @@ export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
+
+export const getPostsByCategory = (category) =>
+  fetch(`${api}/${category}/posts`, { headers })
+    .then(res => res.json())
+
+export const getPosts = () =>
+  fetch(`${api}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => data.reduce((posts, post) => {
+      posts[post.id] = post
+      return posts
+    },{}))
+
+//TODO: Post /posts
+//TODO: Can probably generate uuid above
+
+export const getPostByID = (postId) =>
+  fetch (`${api}/posts/${postId}`, { headers })
+  .then(res => res.json())
+
+
+//TODO: POST /posts/:id (for voting)
+//TODO: PUT /posts/:id (edit post)
+//TODO: DELETE /posts/:id
+
+export const getCommentsByPost = (postId) =>
+  fetch (`${api}/posts/${postId}/comments`, { headers })
+  .then(res => res.json())
+
+//TODO: POST /comments
+//TODO: GET /comments/:id
+
+export const getCommentByID = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, { headers })
+  .then(res => res.json())
+
+//TODO: POST /comments/:id
+//TODO: PUT /comments/:id
+//TODO: DELETE /comments/:id

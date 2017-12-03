@@ -1,12 +1,13 @@
 import {
   ADD_POST,
-  DELETE_POST
+  DELETE_POST,
+  RECEIVE_ALL_POSTS
 } from '../actions/postsAction'
 
 const initialPostsState = {}
 
 function posts (state = initialPostsState, action) {
-  const { post, id } = action
+  const { id, post, posts} = action
 
   switch (action.type) {
     case ADD_POST:
@@ -23,6 +24,10 @@ function posts (state = initialPostsState, action) {
           deleted: true
         }
       }
+
+    case RECEIVE_ALL_POSTS:
+      return posts
+
     default:
       return state
   }
