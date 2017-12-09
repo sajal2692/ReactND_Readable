@@ -15,6 +15,7 @@ export const getCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
+//TODO: Probably not needed? or needed when this page is directly navigated to
 export const getPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
