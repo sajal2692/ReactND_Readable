@@ -9,6 +9,9 @@ class Navigation extends Component {
     return (
       <div className="navbar">
         <Navbar collapseOnSelect fixedTop>
+          <div className="nav-buttons">
+            <Button className="btn-new-post">New Post</Button>
+          </div>
            <Navbar.Header>
              <Navbar.Brand>
                <a href="#">Readable</a>
@@ -17,7 +20,7 @@ class Navigation extends Component {
            </Navbar.Header>
            <Navbar.Collapse>
              <Nav pullRight>
-               <NavItem eventKey={1} href="#">Categories</NavItem>
+               <NavItem href="#">Categories</NavItem>
              </Nav>
            </Navbar.Collapse>
          </Navbar>

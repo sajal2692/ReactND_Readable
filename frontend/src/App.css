@@ -2,6 +2,17 @@
   text-align: center;
 }*/
 
-.navbar Navbar.Header {
-  text-align: center;
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+.navbar-toggle {
+  z-index: 1;
+}
+
+.nav-buttons {
+  float: left;
+  margin-top: .6em; 
 }
