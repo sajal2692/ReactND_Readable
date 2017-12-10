@@ -5,6 +5,8 @@ import { Navbar, Nav, NavItem, Button } from 'react-bootstrap'
 class Navigation extends Component {
 
 //TODO: Render Categories properly
+//TODO: Hide Edit Putton appropriately
+//<Button className="btn-edit-post">Edit Post</Button>
   render() {
     return (
       <div className="navbar">

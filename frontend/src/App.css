@@ -2,10 +2,17 @@
   text-align: center;
 }*/
 
+.navbar-default {
+  background-color: white;
+}
+
 .navbar-brand {
   transform: translateX(-50%);
   left: 50%;
   position: absolute;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2em;
+  color: black;
 }
 
 .navbar-toggle {
@@ -14,5 +21,20 @@
 
 .nav-buttons {
   float: left;
-  margin-top: .6em; 
+  margin-top: .6em;
+}
+
+.btn-new-post, .btn-new-post:active, .btn-new-post:focus {
+  color: green;
+  border-color: green;
+  border-width: 1.65px;
+}
+
+.btn-new-post:hover {
+  color: white;
+  background-color: green;
+}
+
+.btn-edit-post {
+  margin-left: .8em;
 }

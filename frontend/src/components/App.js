@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import '../App.css';
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../actions/postsAction'
@@ -10,6 +9,8 @@ import * as API from '../utils/api'
 import Posts from './Posts'
 import Post from './Post'
 import AddOrEditPost from './AddOrEditPost'
+
+import '../App.css';
 
 class App extends Component {
 
