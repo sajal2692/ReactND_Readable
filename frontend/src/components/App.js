@@ -24,7 +24,6 @@ class App extends Component {
       //TODO: Add Routes for necessary pages.
       //For the above two routes, the same component might be rendered,
       //with different properties. so the api call can be on the post-list component mount?
-      //TODO: /:category/addpost route
       //TODO: /:category/:postid/edit route
 
       <div>
@@ -43,7 +42,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
-    categories: state.categoris
+    categories: state.categories
   }
 }
 
