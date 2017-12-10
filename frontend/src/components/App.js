@@ -15,10 +15,10 @@ import '../App.css';
 class App extends Component {
 
   //TODO: Below mounting calls will be moved to their appropriate places later
-  // componentWillMount() {
-  //   this.props.dispatch(fetchAllPosts())
-  //   this.props.dispatch(fetchCategories())
-  // }
+  componentWillMount() {
+    // this.props.dispatch(fetchAllPosts())
+    this.props.dispatch(fetchCategories())
+  }
 
   render() {
     return (
@@ -31,7 +31,7 @@ class App extends Component {
         <Switch>
           <Route path={"/:category/newpost"} component={AddOrEditPost}/>
           <Route path={"/:category/:postid"} component={Post}/>
-          <Route path={"/:category"} component={Posts}/>
+          <Route name="category" path={"/:category"} component={Posts}/>
           <Route exact path='/' component={Posts}/>
         </Switch>
       </div>
@@ -42,7 +42,7 @@ class App extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state) {
   return {
-    posts: state.posts,
+    // posts: state.posts,
     categories: state.categories
   }
 }

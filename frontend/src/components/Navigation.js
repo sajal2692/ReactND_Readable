@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { capitalize } from '../utils/helpers'
+
 
 class Navigation extends Component {
 
@@ -8,6 +12,8 @@ class Navigation extends Component {
 //TODO: Hide Edit Putton appropriately
 //<Button className="btn-edit-post">Edit Post</Button>
   render() {
+    const { categories } = this.props
+    console.log(categories);
     return (
       <div className="navbar">
         <Navbar collapseOnSelect fixedTop>
@@ -16,13 +22,19 @@ class Navigation extends Component {
           </div>
            <Navbar.Header>
              <Navbar.Brand>
-               <a href="#">Readable</a>
+               <LinkContainer to="/">
+                 <a>Readable</a>
+               </LinkContainer>
              </Navbar.Brand>
              <Navbar.Toggle />
            </Navbar.Header>
            <Navbar.Collapse>
              <Nav pullRight>
-               <NavItem href="#">Categories</NavItem>
+               {categories.length > 1 && categories.map((category) => (
+                 <LinkContainer to="category" params={{category: category.name}}>
+                   <NavItem className="nav-category" key={category.name}>{capitalize(category.name)}</NavItem>
+                 </LinkContainer>
+               ))}
              </Nav>
            </Navbar.Collapse>
          </Navbar>
@@ -32,4 +44,11 @@ class Navigation extends Component {
 
 }
 
-export default Navigation;
+//Can use ownprops here for something
+function mapStateToProps(state) {
+  return {
+    categories: state.categories
+  }
+}
+
+export default connect(mapStateToProps)(Navigation);
