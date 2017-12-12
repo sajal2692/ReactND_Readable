@@ -10,7 +10,7 @@ class PostPreview extends Component {
 
     const { post } = this.props
     return (
-      <div>
+      <div className="post-preview">
         {post.title}
       </div>
     )

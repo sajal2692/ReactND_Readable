@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import Navigation from './Navigation'
 import PostPreview from './PostPreview'
 
+import '../styles/Posts.css'
 
 
 class Posts extends Component {
-
 
   filterPostsByCategory= (category) => {
     return category
@@ -23,11 +23,14 @@ class Posts extends Component {
       <div>
         <Navigation/>
         Viewing Posts<br></br>
-      {category && (` category: ${category}`)}
-      <div className="post-list">
-        {this.filterPostsByCategory(category).map((post) => (
-          <PostPreview key={post.id} post={post}/>
-        ))}
+      {category && (`category: ${category}`)}
+      <div classname="content-container">
+        <div className="post-list">
+          <h1>Posts</h1>
+          {this.filterPostsByCategory(category).map((post) => (
+            <PostPreview key={post.id} post={post}/>
+          ))}
+        </div>
       </div>
       </div>
     )

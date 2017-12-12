@@ -5,6 +5,7 @@ import { Navbar, Nav, NavItem, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { capitalize } from '../utils/helpers'
 
+import '../styles/Navigation.css';
 
 class Navigation extends Component {
 
