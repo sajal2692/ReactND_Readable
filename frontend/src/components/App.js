@@ -16,7 +16,7 @@ class App extends Component {
 
   //TODO: Below mounting calls will be moved to their appropriate places later
   componentWillMount() {
-    // this.props.dispatch(fetchAllPosts())
+    this.props.dispatch(fetchAllPosts())
     this.props.dispatch(fetchCategories())
   }
 
@@ -42,7 +42,7 @@ class App extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state) {
   return {
-    // posts: state.posts,
+    posts: state.posts,
     categories: state.categories
   }
 }

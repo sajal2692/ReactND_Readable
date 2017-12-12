@@ -3,17 +3,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Navigation from './Navigation'
+import PostPreview from './PostPreview'
+
 
 
 class Posts extends Component {
 
 
+  filterPostsByCategory= (category) => {
+    return category
+    ? this.props.posts.filter((post) => post.category === category)
+    : this.props.posts
+  }
+
   render() {
+    // const { posts } = this.props
+    const { category } = this.props.match.params
     return (
       <div>
         <Navigation/>
         Viewing Posts<br></br>
-      {this.props.match.params.category && (` category: ${this.props.match.params.category}`)}
+      {category && (` category: ${category}`)}
+      <div className="post-list">
+        {this.filterPostsByCategory(category).map((post) => (
+          <PostPreview key={post.id} post={post}/>
+        ))}
+      </div>
       </div>
     )
   }
@@ -23,7 +38,7 @@ class Posts extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state) {
   return {
-    posts: state.posts
+    posts: Object.keys(state.posts).map((post) => state.posts[post])
   }
 }
 

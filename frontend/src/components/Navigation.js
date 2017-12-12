@@ -13,7 +13,6 @@ class Navigation extends Component {
 //<Button className="btn-edit-post">Edit Post</Button>
   render() {
     const { categories } = this.props
-    console.log(categories);
     return (
       <div className="navbar">
         <Navbar collapseOnSelect fixedTop>
@@ -31,8 +30,8 @@ class Navigation extends Component {
            <Navbar.Collapse>
              <Nav pullRight>
                {categories.length > 1 && categories.map((category) => (
-                 <LinkContainer to={`/${category.path}`}>
-                   <NavItem className="nav-category" key={category.name}>{capitalize(category.name)}</NavItem>
+                 <LinkContainer to={`/${category.path}`} key={category.name}>
+                   <NavItem className="nav-category">{capitalize(category.name)}</NavItem>
                  </LinkContainer>
                ))}
              </Nav>
