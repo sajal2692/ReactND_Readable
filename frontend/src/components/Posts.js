@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+// import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 import Navigation from './Navigation'
+
 
 class Posts extends Component {
 
@@ -17,4 +20,11 @@ class Posts extends Component {
 
 }
 
-export default Posts;
+//Can use ownprops here for something
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(Posts);

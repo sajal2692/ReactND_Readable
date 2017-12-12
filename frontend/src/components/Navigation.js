@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link , withRouter} from 'react-router-dom';
 import { Navbar, Nav, NavItem, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { capitalize } from '../utils/helpers'
@@ -31,7 +31,7 @@ class Navigation extends Component {
            <Navbar.Collapse>
              <Nav pullRight>
                {categories.length > 1 && categories.map((category) => (
-                 <LinkContainer to="category" params={{category: category.name}}>
+                 <LinkContainer to={`/${category.path}`}>
                    <NavItem className="nav-category" key={category.name}>{capitalize(category.name)}</NavItem>
                  </LinkContainer>
                ))}
@@ -51,4 +51,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Navigation);
+export default withRouter(connect(mapStateToProps)(Navigation));

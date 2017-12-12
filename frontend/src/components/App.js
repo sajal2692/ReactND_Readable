@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../actions/postsAction'
 import { fetchCategories } from '../actions/categoriesAction'
@@ -31,7 +31,7 @@ class App extends Component {
         <Switch>
           <Route path={"/:category/newpost"} component={AddOrEditPost}/>
           <Route path={"/:category/:postid"} component={Post}/>
-          <Route name="category" path={"/:category"} component={Posts}/>
+          <Route path={"/:category"} component={Posts}/>
           <Route exact path='/' component={Posts}/>
         </Switch>
       </div>
@@ -47,4 +47,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
