@@ -16,7 +16,7 @@ class Navigation extends Component {
     const { categories } = this.props
     return (
       <div className="navbar">
-        <Navbar collapseOnSelect fixedTop>
+        <Navbar collapseOnSelect>
           <div className="nav-buttons">
             <Button className="btn-new-post">New Post</Button>
           </div>

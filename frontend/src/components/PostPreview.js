@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Item, Statistic, Icon } from 'semantic-ui-react'
 
 // import Navbar from './Navbar'
 
@@ -10,9 +11,23 @@ class PostPreview extends Component {
 
     const { post } = this.props
     return (
-      <div className="post-preview">
-        {post.title}
-      </div>
+        <Item>
+          <div className='vote-score-container'>
+            <Statistic size='mini'>
+              <Statistic.Label>Score</Statistic.Label>
+              <Statistic.Value>{post.voteScore}</Statistic.Value>
+            </Statistic>
+            <div className="voting-buttons">
+              <Icon size='large' link name='chevron up' />
+              <Icon size='large' link name='chevron down' />
+            </div>
+          </div>
+          <Item.Content>
+            <Item.Header as='a'>{post.title}</Item.Header>
+            <Item.Meta>{post.author}</Item.Meta>
+            <Item.Extra>{post.commentCount} Comments</Item.Extra>
+          </Item.Content>
+        </Item>
     )
   }
 

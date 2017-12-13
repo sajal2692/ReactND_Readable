@@ -46,3 +46,9 @@
 .btn-edit-post {
   margin-left: .8em;
 }
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background-color: white;
+  }
+}
