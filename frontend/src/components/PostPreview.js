@@ -18,8 +18,8 @@ class PostPreview extends Component {
               <Statistic.Value>{post.voteScore}</Statistic.Value>
             </Statistic>
             <div className="voting-buttons">
-              <Icon size='large' link name='chevron up' />
-              <Icon size='large' link name='chevron down' />
+              <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
+              <Icon size='large' onClick={()=>console.log("Pressed down!")} link name='chevron down' />
             </div>
           </div>
           <Item.Content>

@@ -25,7 +25,7 @@ class Posts extends Component {
     return (
       <div>
         <Navigation/>
-        <div classname="content-container">
+        <div className="content-container">
           <div className="post-list">
             <PageHeader>
               Posts
