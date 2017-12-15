@@ -19,11 +19,15 @@ class PostPreview extends Component {
             </Statistic>
             <div className="voting-buttons">
               <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
-              <Icon size='large' onClick={()=>console.log("Pressed down!")} link name='chevron down' />
+              <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
             </div>
           </div>
           <Item.Content>
-            <Item.Header as='a'>{post.title}</Item.Header>
+            <Item.Header as='a'>
+              <Link to={`/${post.category}/${post.id}`}>
+                {post.title}
+              </Link>
+            </Item.Header>
             <Item.Meta>{post.author}</Item.Meta>
             <Item.Extra>{post.commentCount} Comments</Item.Extra>
           </Item.Content>

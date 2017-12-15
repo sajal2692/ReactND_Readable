@@ -1,21 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { PageHeader } from 'react-bootstrap'
+import Navigation from './Navigation'
 
-// import Navbar from './Navbar'
+import '../styles/Post.css'
 
 class Post extends Component {
 
 
+  filterPost = (postId) => { return this.props.posts.filter((post) => post.id === postId)[0]}
+
   render() {
+    const post = this.filterPost(this.props.match.params.postid)
+    console.log(post)
     return (
       <div>
-        Single Post <br></br>
-        {this.props.match.params.category && (` Category: ${this.props.match.params.category}`)}<br></br>
-        {this.props.match.params.postid && (` Post: ${this.props.match.params.postid}`)}
+      <Navigation/>
+      <div className="content-container">
+        <div className="post-container">
+          <PageHeader>
+            {post && post.title}
+          </PageHeader>
+        </div>
+      </div>
       </div>
     )
   }
 
 }
 
-export default Post;
+//Can use ownprops here for something
+function mapStateToProps(state) {
+  return {
+    posts: Object.keys(state.posts).map((post) => state.posts[post])
+  }
+}
+
+export default connect(mapStateToProps)(Post);
