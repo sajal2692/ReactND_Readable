@@ -24,7 +24,7 @@ class PostPreview extends Component {
           </div>
           <Item.Content>
             <Item.Header>
-              <Link to={`/${post.category}/${post.id}`}>
+              <Link className="post-preview-title" to={`/${post.category}/${post.id}`}>
                 {post.title}
               </Link>
             </Item.Header>

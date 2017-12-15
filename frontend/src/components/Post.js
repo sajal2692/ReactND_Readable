@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
+import { Icon } from 'semantic-ui-react'
 
 import '../styles/Post.css'
 
@@ -19,14 +20,15 @@ class Post extends Component {
       <div className="content-container">
         {post && (
           <div className="post-container">
+            <Link className="back-arrow" to={`/${post.category}`}>
+              <Icon size="large" link name='arrow left' />
+            </Link>
             <PageHeader className="post-header">
               {post.title}
-              <small>{capitalize(post.author)}</small>
+              <small> by {capitalize(post.author)}</small>
             </PageHeader>
             <div className="post-body">
-              <p>
                 {post.body}
-              </p>
             </div>
           </div>
         )}

@@ -49,6 +49,7 @@ class Posts extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state) {
   return {
+    categories: state.categories,
     posts: Object.keys(state.posts).map((post) => state.posts[post])
   }
 }
