@@ -18,7 +18,8 @@ class Post extends Component {
       <div>
       <Navigation/>
       <div className="content-container">
-        {post && (
+        {post
+          ? (
           <div className="post-container">
             <Link className="back-arrow" to={`/${post.category}`}>
               <Icon size="large" link name='arrow left' />
@@ -31,7 +32,12 @@ class Post extends Component {
                 {post.body}
             </div>
           </div>
-        )}
+        )
+      : (
+        <div class="four-oh-four">
+          There's nothing here.
+        </div>
+      )}
       </div>
       </div>
     )

@@ -20,25 +20,34 @@ class Posts extends Component {
   }
 
   render() {
-    // const { posts } = this.props
     const { category } = this.props.match.params
     return (
       <div>
         <Navigation/>
         <div className="content-container">
-          <div className="post-list">
-            <PageHeader>
-              Posts
-              {category && (<small>{capitalize(category)}</small>)}
-            </PageHeader>
-            <div className="posts-container">
-              <Item.Group relaxed>
-                {this.filterPostsByCategory(category).map((post) => (
-                  <PostPreview key={post.id} post={post}/>
-                ))}
-              </Item.Group>
-            </div>
-          </div>
+
+          { ((this.props.categories.length > 0 && this.props.categories.find(cat => cat.name === category)) || !category)
+            ? (
+              <div className="post-list">
+                <PageHeader>
+                  Posts
+                  {category && (<small>{capitalize(category)}</small>)}
+                </PageHeader>
+                <div className="posts-container">
+                  <Item.Group relaxed>
+                    {this.filterPostsByCategory(category).map((post) => (
+                      <PostPreview key={post.id} post={post}/>
+                    ))}
+                  </Item.Group>
+                </div>
+              </div>
+            )
+            : (
+              <div class="four-oh-four">
+                There's nothing here.
+              </div>
+            )
+          }
         </div>
       </div>
     )
