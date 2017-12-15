@@ -3,26 +3,33 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
+import { capitalize } from '../utils/helpers'
 
 import '../styles/Post.css'
 
 class Post extends Component {
 
 
-  filterPost = (postId) => { return this.props.posts.filter((post) => post.id === postId)[0]}
-
   render() {
-    const post = this.filterPost(this.props.match.params.postid)
-    console.log(post)
+    const { post } = this.props
+
     return (
       <div>
       <Navigation/>
       <div className="content-container">
-        <div className="post-container">
-          <PageHeader>
-            {post && post.title}
-          </PageHeader>
-        </div>
+        {post && (
+          <div className="post-container">
+            <PageHeader className="post-header">
+              {post.title}
+              <small>{capitalize(post.author)}</small>
+            </PageHeader>
+            <div className="post-body">
+              <p>
+                {post.body}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
       </div>
     )
@@ -31,9 +38,9 @@ class Post extends Component {
 }
 
 //Can use ownprops here for something
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    posts: Object.keys(state.posts).map((post) => state.posts[post])
+    post: state.posts[ownProps.match.params.postid]
   }
 }
 

@@ -23,7 +23,7 @@ class PostPreview extends Component {
             </div>
           </div>
           <Item.Content>
-            <Item.Header as='a'>
+            <Item.Header>
               <Link to={`/${post.category}/${post.id}`}>
                 {post.title}
               </Link>

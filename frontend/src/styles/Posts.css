@@ -19,6 +19,10 @@ h1 small {
   font-size: 1.1em;
 }
 
+.posts-container .header a {
+  color: black;
+}
+
 .voting-buttons i:first {
   float:left
 }
