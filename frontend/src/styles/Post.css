@@ -10,3 +10,12 @@ h1 small {
 .back-arrow {
   color: black
 }
+
+.edit-delete-container {
+  float: right;
+}
+
+i.trash.outline.large.icon {
+  color: #b50000;
+  margin-left: 0.5em;
+}

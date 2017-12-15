@@ -10,7 +10,7 @@ import '../styles/Post.css'
 
 class Post extends Component {
 
-
+  //TODO: Implement LOADING
   render() {
     const { post } = this.props
 
@@ -21,9 +21,15 @@ class Post extends Component {
         {post
           ? (
           <div className="post-container">
-            <Link className="back-arrow" to={`/${post.category}`}>
-              <Icon size="large" link name='arrow left' />
-            </Link>
+            <div>
+              <Link className="back-arrow" to={`/${post.category}`}>
+                <Icon size="large" link name='arrow left' />
+              </Link>
+              <div className="edit-delete-container">
+                <Icon size="large" link name="edit"/>
+                <Icon size="large" link name="trash outline"/>
+              </div>
+            </div>
             <PageHeader className="post-header">
               {post.title}
               <small> by {capitalize(post.author)}</small>
@@ -34,7 +40,7 @@ class Post extends Component {
           </div>
         )
       : (
-        <div class="four-oh-four">
+        <div className="four-oh-four">
           There's nothing here.
         </div>
       )}

@@ -28,7 +28,7 @@ class App extends Component {
 
       <div>
         <Switch>
-          <Route path={"/:category/newpost"} component={AddOrEditPost}/>
+          <Route path={"/newpost"} component={AddOrEditPost}/>
           <Route path={"/:category/:postid"} component={Post}/>
           <Route path={"/:category"} component={Posts}/>
           <Route exact path='/' component={Posts}/>

@@ -18,7 +18,9 @@ class Navigation extends Component {
       <div className="navbar">
         <Navbar collapseOnSelect>
           <div className="nav-buttons">
-            <Button className="btn-new-post">New Post</Button>
+            <Link to="/newpost">
+              <Button className="btn-new-post">New Post</Button>
+            </Link>
           </div>
            <Navbar.Header>
              <Navbar.Brand>
