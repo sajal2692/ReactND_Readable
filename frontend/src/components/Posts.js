@@ -21,6 +21,8 @@ class Posts extends Component {
 
   render() {
     const { category } = this.props.match.params
+    const posts = this.filterPostsByCategory(category)
+
     return (
       <div>
         <Navigation/>
@@ -33,17 +35,25 @@ class Posts extends Component {
                   Posts
                   {category && (<small>{capitalize(category)}</small>)}
                 </PageHeader>
-                <div className="posts-container">
-                  <Item.Group relaxed>
-                    {this.filterPostsByCategory(category).map((post) => (
-                      <PostPreview key={post.id} post={post}/>
-                    ))}
-                  </Item.Group>
-                </div>
+                {posts.length > 0
+                ? (
+                  <div className="posts-container">
+                    <Item.Group relaxed>
+                      {posts.map((post) => (
+                        <PostPreview key={post.id} post={post}/>
+                      ))}
+                    </Item.Group>
+                  </div>
+                )
+                : (
+                  <div className="four-oh-four">
+                    There are no posts in this category.
+                  </div>
+                )}
               </div>
             )
             : (
-              <div class="four-oh-four">
+              <div className="four-oh-four">
                 There's nothing here.
               </div>
             )
