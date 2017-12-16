@@ -11,24 +11,12 @@ h1 small {
   margin: 20px 0 20px 0;
 }
 
-.vote-score-container {
-  margin-right: 2em;
-}
-
 .posts-container {
   font-size: 1.1em;
 }
 
 .post-preview-title {
   color: black;
-}
-
-.voting-buttons i:first {
-  float:left
-}
-
-.voting-buttons i:last-child {
-  float:right
 }
 
 .ui.statistic:first-child {

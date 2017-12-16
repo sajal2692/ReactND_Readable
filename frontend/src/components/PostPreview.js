@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Item, Statistic, Icon } from 'semantic-ui-react'
+import { Item, Icon } from 'semantic-ui-react'
 
-// import Navbar from './Navbar'
+import VoteScore from './VoteScore'
 
 class PostPreview extends Component {
 
@@ -12,16 +12,7 @@ class PostPreview extends Component {
     const { post } = this.props
     return (
         <Item>
-          <div className='vote-score-container'>
-            <Statistic size='mini'>
-              <Statistic.Label>Score</Statistic.Label>
-              <Statistic.Value>{post.voteScore}</Statistic.Value>
-            </Statistic>
-            <div className="voting-buttons">
-              <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
-              <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
-            </div>
-          </div>
+          <VoteScore score={post.voteScore}/>
           <Item.Content>
             <Item.Header>
               <Link className="post-preview-title" to={`/${post.category}/${post.id}`}>

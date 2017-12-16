@@ -1,0 +1,11 @@
+.vote-score-container {
+  margin-right: 2em;
+}
+
+.voting-buttons i:first {
+  float:left
+}
+
+.voting-buttons i:last-child {
+  float:right
+}
