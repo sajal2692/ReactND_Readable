@@ -19,3 +19,15 @@ i.trash.outline.large.icon {
   color: #b50000;
   margin-left: 0.5em;
 }
+
+.post-vote-box {
+  text-align: center;
+}
+
+.ui.tiny.statistic.post-vote-score {
+  margin: 0 0 0 0;
+}
+
+.post-vote-buttons {
+  margin-left: 1em;
+}

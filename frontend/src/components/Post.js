@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
-import { Icon } from 'semantic-ui-react'
+import { Icon, Statistic, Grid } from 'semantic-ui-react'
+
+import VoteScore from './VoteScore'
 
 import '../styles/Post.css'
 
@@ -19,7 +21,7 @@ class Post extends Component {
       <Navigation/>
       {loading
       ? (
-        <div class="four-oh-four">
+        <div className="four-oh-four">
           Loading...
         </div>
       ) : (
@@ -27,14 +29,30 @@ class Post extends Component {
           {post
             ? (
               <div className="post-container">
-                <div>
-                  <Link className="back-arrow" to={`/${post.category}`}>
-                    <Icon size="large" link name='arrow left' />
-                  </Link>
-                  <div className="edit-delete-container">
-                    <Icon size="large" link name="edit"/>
-                    <Icon size="large" link name="trash outline"/>
-                  </div>
+                <div className="post-handlers">
+                  <Grid columns={3}>
+                    <Grid.Column>
+                      <Link className="back-arrow" to={`/${post.category}`}>
+                        <Icon size="large" link name='arrow left' />
+                      </Link>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <div className="post-vote-box">
+                        <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
+                          <Statistic className="post-vote-score" size='tiny'>
+                            <Statistic.Label>Score</Statistic.Label>
+                            <Statistic.Value>{post.voteScore}</Statistic.Value>
+                          </Statistic>
+                        <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
+                      </div>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <div className="edit-delete-container">
+                        <Icon size="large" link name="edit"/>
+                        <Icon size="large" link name="trash outline"/>
+                      </div>
+                    </Grid.Column>
+                  </Grid>
                 </div>
                 <PageHeader className="post-header">
                   {post.title}
@@ -43,6 +61,7 @@ class Post extends Component {
                 <div className="post-body">
                   {post.body}
                 </div>
+                <div className="post-comments"></div>
               </div>
             )
             : (
