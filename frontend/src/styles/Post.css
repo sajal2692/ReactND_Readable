@@ -24,6 +24,14 @@ i.trash.outline.large.icon {
   text-align: center;
 }
 
+.post-vote-box i.chevron.down.large.link.icon {
+  margin-left: .5em;
+}
+
+.ui.horizontal.statistic>.label, .ui.horizontal.statistics .statistic>.label {
+  margin: 0 0 0 0;
+}
+
 .ui.tiny.statistic.post-vote-score {
   margin: 0 0 0 0;
 }

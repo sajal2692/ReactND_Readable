@@ -39,8 +39,8 @@ class Post extends Component {
                     <Grid.Column>
                       <div className="post-vote-box">
                         <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
-                          <Statistic className="post-vote-score" size='tiny'>
-                            <Statistic.Label>Score</Statistic.Label>
+                          <Statistic horizontal className="post-vote-score" size='tiny'>
+                            <Statistic.Label>Score:</Statistic.Label>
                             <Statistic.Value>{post.voteScore}</Statistic.Value>
                           </Statistic>
                         <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
