@@ -35,6 +35,7 @@ export function receiveAllPosts(posts) {
   return {
     type: RECEIVE_ALL_POSTS,
     posts,
+    loading: false, 
   }
 }
 

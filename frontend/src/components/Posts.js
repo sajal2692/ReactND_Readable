@@ -7,7 +7,6 @@ import PostPreview from './PostPreview'
 import { PageHeader } from 'react-bootstrap'
 import { capitalize } from '../utils/helpers'
 import { Item } from 'semantic-ui-react'
-
 import '../styles/Posts.css'
 
 
@@ -21,12 +20,18 @@ class Posts extends Component {
 
   render() {
     const { category } = this.props.match.params
-    const posts = this.filterPostsByCategory(category)
+    const posts = !this.props.loading ? this.filterPostsByCategory(category) : [];
 
     return (
       <div>
         <Navigation/>
-        <div className="content-container">
+        {this.props.loading
+        ? (
+          <div className="four-oh-four">
+            Loading...
+          </div>
+        ) : (
+          <div className="content-container">
 
           { ((this.props.categories.length > 0 && this.props.categories.find(cat => cat.name === category)) || !category)
             ? (
@@ -59,6 +64,7 @@ class Posts extends Component {
             )
           }
         </div>
+        )}
       </div>
     )
   }
@@ -68,8 +74,11 @@ class Posts extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state) {
   return {
+    loading: state.posts.loading,
     categories: state.categories,
-    posts: Object.keys(state.posts).map((post) => state.posts[post])
+    posts: state.posts.posts
+          ? Object.keys(state.posts.posts).map((post) => state.posts.posts[post])
+          : {}
   }
 }
 

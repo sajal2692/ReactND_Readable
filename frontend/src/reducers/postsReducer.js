@@ -4,10 +4,10 @@ import {
   RECEIVE_ALL_POSTS
 } from '../actions/postsAction'
 
-const initialPostsState = {}
+const initialPostsState = {loading: true}
 
 function posts (state = initialPostsState, action) {
-  const { id, post, posts} = action
+  const { id, post, posts, loading} = action
 
   switch (action.type) {
     case ADD_POST:
@@ -26,7 +26,11 @@ function posts (state = initialPostsState, action) {
       }
 
     case RECEIVE_ALL_POSTS:
-      return posts
+      return {
+        ...state,
+        posts,
+        loading,
+      }
 
     default:
       return state

@@ -38,12 +38,12 @@ class App extends Component {
   }
 }
 
-//Can use ownprops here for something
-function mapStateToProps(state) {
-  return {
-    posts: state.posts,
-    categories: state.categories
-  }
-}
+// //Can use ownprops here for something
+// function mapStateToProps(state) {
+//   return {
+//     posts: state.posts,
+//     categories: state.categories
+//   }
+// }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect()(App));

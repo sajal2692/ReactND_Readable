@@ -12,39 +12,46 @@ class Post extends Component {
 
   //TODO: Implement LOADING
   render() {
-    const { post } = this.props
+    const { post, loading  } = this.props
 
     return (
       <div>
       <Navigation/>
-      <div className="content-container">
-        {post
-          ? (
-          <div className="post-container">
-            <div>
-              <Link className="back-arrow" to={`/${post.category}`}>
-                <Icon size="large" link name='arrow left' />
-              </Link>
-              <div className="edit-delete-container">
-                <Icon size="large" link name="edit"/>
-                <Icon size="large" link name="trash outline"/>
-              </div>
-            </div>
-            <PageHeader className="post-header">
-              {post.title}
-              <small> by {capitalize(post.author)}</small>
-            </PageHeader>
-            <div className="post-body">
-                {post.body}
-            </div>
-          </div>
-        )
-      : (
-        <div className="four-oh-four">
-          There's nothing here.
+      {loading
+      ? (
+        <div class="four-oh-four">
+          Loading...
         </div>
+      ) : (
+        <div className="content-container">
+          {post
+            ? (
+              <div className="post-container">
+                <div>
+                  <Link className="back-arrow" to={`/${post.category}`}>
+                    <Icon size="large" link name='arrow left' />
+                  </Link>
+                  <div className="edit-delete-container">
+                    <Icon size="large" link name="edit"/>
+                    <Icon size="large" link name="trash outline"/>
+                  </div>
+                </div>
+                <PageHeader className="post-header">
+                  {post.title}
+                  <small> by {capitalize(post.author)}</small>
+                </PageHeader>
+                <div className="post-body">
+                  {post.body}
+                </div>
+              </div>
+            )
+            : (
+              <div className="four-oh-four">
+                There's nothing here.
+              </div>
+            )}
+          </div>
       )}
-      </div>
       </div>
     )
   }
@@ -54,7 +61,10 @@ class Post extends Component {
 //Can use ownprops here for something
 function mapStateToProps(state, ownProps) {
   return {
-    post: state.posts[ownProps.match.params.postid]
+    loading: state.posts.loading,
+    post: state.posts.posts
+          ? state.posts.posts[ownProps.match.params.postid]
+          : {}
   }
 }
 
