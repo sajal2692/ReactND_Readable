@@ -2,7 +2,8 @@ import {
   ADD_COMMENT,
   DELETE_COMMENT,
   RECEIVE_COMMENTS_BY_POST,
-  LOADING_COMMENTS
+  LOADING_COMMENTS,
+  UPDATE_COMMENT
 } from '../actions/commentsAction'
 
 const initialCommentsState = {loading: true}
@@ -37,6 +38,15 @@ function comments (state = initialCommentsState, action) {
       return {
         ...state,
         loading,
+      }
+
+    case UPDATE_COMMENT:
+      return {
+        ...state,
+        comments: {
+          ...state.comments,
+          [id]: comment
+        }
       }
 
     default:

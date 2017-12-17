@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { capitalize } from '../utils/helpers'
-import { Comment, Header } from 'semantic-ui-react'
-import { fetchCommentsByPost, loadingComments } from '../actions/commentsAction'
-
+import { Comment, Header, Icon, Form, Button } from 'semantic-ui-react'
+import { fetchCommentsByPost, loadingComments, fetchVoteComment } from '../actions/commentsAction'
+import moment from 'moment'
 import VoteScore from './VoteScore'
 
 import '../styles/Comments.css'
@@ -22,6 +22,12 @@ class Comments extends Component {
     return (
       <Comment.Group>
         <Header as='h3' dividing>Comments</Header>
+          <Form>
+            <Form.Input label='Author' placeholder='First name' />
+            <Form.TextArea label="Content" placeholder="Your comment.."/>
+            <Button>Add Comment </Button>
+          </Form>
+
         {loading
         ? (
           <div className="four-oh-four">
@@ -32,16 +38,20 @@ class Comments extends Component {
            ? comments.map((comment) => (
             <Comment key={comment.id}>
               <Comment.Content>
-                <Comment.Author>
+                <Comment.Author as='span'>
                   {capitalize(comment.author)}
                 </Comment.Author>
                 <Comment.Metadata>
-                  <div>lol</div>
+                  <div>{moment(comment.timestamp).format('MMMM Do YYYY, h:mm a')}</div>
                 </Comment.Metadata>
                 <Comment.Text>{comment.body}</Comment.Text>
                 <Comment.Actions>
                   <Comment.Action>Edit</Comment.Action>
                   <Comment.Action>Delete</Comment.Action>
+                  <Comment.Action as='span'>|</Comment.Action>
+                  <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>
+                  <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "upVote"))} link name='chevron up' /></Comment.Action>
+                  <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "downVote"))} link name='chevron down' /></Comment.Action>
                 </Comment.Actions>
               </Comment.Content>
             </Comment>
@@ -52,6 +62,7 @@ class Comments extends Component {
             </div>
           )
         }
+
       </Comment.Group>
     )
   }
@@ -62,6 +73,8 @@ function mapStateToProps(state, ownProps) {
   return {
     loading: state.comments.loading,
     comments: state.comments.comments
+          ? Object.keys(state.comments.comments).map((comment) => state.comments.comments[comment])
+          : {}
   }
 }
 

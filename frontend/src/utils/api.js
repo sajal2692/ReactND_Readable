@@ -53,6 +53,10 @@ export const votePost = (postId, voteType) =>
 export const getCommentsByPost = (postId) =>
   fetch (`${api}/posts/${postId}/comments`, { headers })
   .then(res => res.json())
+  .then(data => data.reduce((comments, comment) => {
+    comments[comment.id] = comment
+    return comments
+  },{}))
 
 //TODO: POST /comments
 //TODO: GET /comments/:id
@@ -61,6 +65,15 @@ export const getCommentByID = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
   .then(res => res.json())
 
-//TODO: POST /comments/:id
+  export const voteComment = (commentId, voteType) =>
+    fetch(`${api}/comments/${commentId}`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        option: voteType
+      })}
+    )
+    .then(res => res.json())
+
 //TODO: PUT /comments/:id
 //TODO: DELETE /comments/:id

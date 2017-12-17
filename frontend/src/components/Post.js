@@ -7,7 +7,6 @@ import { capitalize } from '../utils/helpers'
 import { Icon, Statistic, Grid } from 'semantic-ui-react'
 import { fetchVotePost } from '../actions/postsAction'
 
-import VoteScore from './VoteScore'
 import Comments from './Comments'
 
 import '../styles/Post.css'
