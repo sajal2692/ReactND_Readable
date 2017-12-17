@@ -7,7 +7,8 @@ if (!token)
 
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': token,
+  'Content-Type': 'application/json'
 }
 
 export const getCategories = () =>
@@ -37,6 +38,17 @@ export const getPostByID = (postId) =>
 
 
 //TODO: POST /posts/:id (for voting)
+
+export const votePost = (postId, voteType) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      option: voteType
+    })}
+  )
+  .then(res => res.json())
+
 //TODO: PUT /posts/:id (edit post)
 //TODO: DELETE /posts/:id
 

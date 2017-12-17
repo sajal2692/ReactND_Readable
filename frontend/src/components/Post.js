@@ -5,6 +5,7 @@ import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
 import { Icon, Statistic, Grid } from 'semantic-ui-react'
+import { fetchVotePost } from '../actions/postsAction'
 
 import VoteScore from './VoteScore'
 
@@ -38,12 +39,12 @@ class Post extends Component {
                     </Grid.Column>
                     <Grid.Column>
                       <div className="post-vote-box">
-                        <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
+                        <Icon size="large" onClick={()=>this.props.dispatch(fetchVotePost(post.id, "upVote"))} link name='chevron up' />
                           <Statistic horizontal className="post-vote-score" size='tiny'>
                             <Statistic.Label>Score:</Statistic.Label>
                             <Statistic.Value>{post.voteScore}</Statistic.Value>
                           </Statistic>
-                        <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
+                        <Icon size='large' onClick={()=>this.props.dispatch(fetchVotePost(post.id, "downVote"))} link name='chevron down' />
                       </div>
                     </Grid.Column>
                     <Grid.Column>

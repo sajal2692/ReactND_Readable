@@ -12,7 +12,7 @@ class PostPreview extends Component {
     const { post } = this.props
     return (
         <Item>
-          <VoteScore score={post.voteScore}/>
+          <VoteScore postId={post.id} score={post.voteScore}/>
           <Item.Content>
             <Item.Header>
               <Link className="post-preview-title" to={`/${post.category}/${post.id}`}>

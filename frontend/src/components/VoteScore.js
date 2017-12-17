@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Statistic, Icon } from 'semantic-ui-react'
+import { fetchVotePost } from '../actions/postsAction'
 
 import '../styles/VoteScore.css'
 
@@ -7,7 +9,7 @@ import '../styles/VoteScore.css'
 class VoteScore extends Component {
 
   render() {
-    const { score } = this.props
+    const { score, postId } = this.props
 
     return (
       <div className='vote-score-container'>
@@ -16,8 +18,8 @@ class VoteScore extends Component {
           <Statistic.Value>{score}</Statistic.Value>
         </Statistic>
         <div className="voting-buttons">
-          <Icon size="large" onClick={()=>console.log("Pressed up!")} link name='chevron up' />
-          <Icon size='large' onClick={()=>console.log("Pressed dow")} link name='chevron down' />
+          <Icon size="large" onClick={()=>this.props.dispatch(fetchVotePost(postId, "upVote"))} link name='chevron up' />
+          <Icon size='large' onClick={()=>this.props.dispatch(fetchVotePost(postId, "downVote"))} link name='chevron down' />
         </div>
       </div>
     )
@@ -25,4 +27,4 @@ class VoteScore extends Component {
 
 }
 
-export default VoteScore;
+export default connect()(VoteScore);

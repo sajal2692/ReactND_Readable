@@ -11,10 +11,9 @@ import * as API from '../utils/api'
 export const ADD_POST = 'ADD_POST' //TODO: Create Acton
 export const EDIT_POST = 'EDIT_POST' //TODO: Create Acton
 export const DELETE_POST = 'DELETE_POST' //TODO: Create Acton
-export const UPVOTE_POST = 'UPVOTE_POST' //TODO: Create Acton
-export const DOWNVOTE_POST = 'DOWNVOTE_POST' //TODO: Create Acton
-export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS' //TODO: Create Acton
-export const RECEIVE_POST = 'RECEIVE_POST' //TODO: Create Action
+export const UPDATE_POST = 'UPDATE_POST'
+export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
+export const RECEIVE_POST = 'RECEIVE_POST'
 
 export function addPost ({id, post}) {
   return {
@@ -31,11 +30,27 @@ export function deletePost ({id}) {
   }
 }
 
+export function updatePost(postId, post) {
+  return {
+    type: UPDATE_POST,
+    id: postId,
+    post,
+  }
+}
+
+export const fetchVotePost = (postId, voteType) => dispatch => (
+  API
+    .votePost(postId, voteType)
+    .then(post => {
+      dispatch(updatePost(postId, post))
+    })
+);
+
 export function receiveAllPosts(posts) {
   return {
     type: RECEIVE_ALL_POSTS,
     posts,
-    loading: false, 
+    loading: false,
   }
 }
 
