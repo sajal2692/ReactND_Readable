@@ -32,10 +32,14 @@ i.trash.outline.large.icon {
   margin: 0 0 0 0;
 }
 
-.ui.tiny.statistic.post-vote-score {
+.ui.mini.statistic.post-vote-score {
   margin: 0 0 0 0;
 }
 
 .post-vote-buttons {
   margin-left: 1em;
+}
+
+.post-comments {
+  margin-top: 5em;
 }

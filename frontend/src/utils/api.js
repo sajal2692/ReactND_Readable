@@ -37,8 +37,6 @@ export const getPostByID = (postId) =>
   .then(res => res.json())
 
 
-//TODO: POST /posts/:id (for voting)
-
 export const votePost = (postId, voteType) =>
   fetch(`${api}/posts/${postId}`, {
     method: 'POST',

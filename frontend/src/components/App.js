@@ -3,7 +3,6 @@ import { Route, Switch, withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../actions/postsAction'
 import { fetchCategories } from '../actions/categoriesAction'
-import * as API from '../utils/api'
 
 import Posts from './Posts'
 import Post from './Post'

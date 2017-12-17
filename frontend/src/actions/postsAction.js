@@ -46,7 +46,7 @@ export const fetchVotePost = (postId, voteType) => dispatch => (
     })
 );
 
-export function receiveAllPosts(posts) {
+function receiveAllPosts(posts) {
   return {
     type: RECEIVE_ALL_POSTS,
     posts,

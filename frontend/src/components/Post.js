@@ -8,6 +8,7 @@ import { Icon, Statistic, Grid } from 'semantic-ui-react'
 import { fetchVotePost } from '../actions/postsAction'
 
 import VoteScore from './VoteScore'
+import Comments from './Comments'
 
 import '../styles/Post.css'
 
@@ -40,7 +41,7 @@ class Post extends Component {
                     <Grid.Column>
                       <div className="post-vote-box">
                         <Icon size="large" onClick={()=>this.props.dispatch(fetchVotePost(post.id, "upVote"))} link name='chevron up' />
-                          <Statistic horizontal className="post-vote-score" size='tiny'>
+                          <Statistic horizontal className="post-vote-score" size='mini'>
                             <Statistic.Label>Score:</Statistic.Label>
                             <Statistic.Value>{post.voteScore}</Statistic.Value>
                           </Statistic>
@@ -62,7 +63,9 @@ class Post extends Component {
                 <div className="post-body">
                   {post.body}
                 </div>
-                <div className="post-comments"></div>
+                <div className="post-comments">
+                  <Comments parentid={post.id}/>
+                </div>
               </div>
             )
             : (

@@ -11,7 +11,7 @@ export const ACTIVATE_CATEGORY = 'ACTIVATE_CATEGORY' //TODO: create action
 export const DEACTIVATE_CATEGORY = 'DEACTIVATE_CATEGORY' //TODO: create action
 export const GET_ACTIVE_CATEGORY = 'GET_ACTIVE_CATEGORY' //TODO: create action
 
-export function receiveCategories(categories) {
+function receiveCategories(categories) {
   return {
     type: RECEIVE_CATEGORIES,
     categories,
