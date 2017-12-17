@@ -22,45 +22,52 @@ class Comments extends Component {
     return (
       <Comment.Group>
         <Header as='h3' dividing>Comments</Header>
-          <Form>
-            <Form.Input label='Author' placeholder='First name' />
-            <Form.TextArea label="Content" placeholder="Your comment.."/>
-            <Button>Add Comment </Button>
-          </Form>
-
         {loading
         ? (
           <div className="four-oh-four">
             Loading...
           </div>
-        ) :
-          (comments && comments.length > 0)
-           ? comments.map((comment) => (
-            <Comment key={comment.id}>
-              <Comment.Content>
-                <Comment.Author as='span'>
-                  {capitalize(comment.author)}
-                </Comment.Author>
-                <Comment.Metadata>
-                  <div>{moment(comment.timestamp).format('MMMM Do YYYY, h:mm a')}</div>
-                </Comment.Metadata>
-                <Comment.Text>{comment.body}</Comment.Text>
-                <Comment.Actions>
-                  <Comment.Action>Edit</Comment.Action>
-                  <Comment.Action>Delete</Comment.Action>
-                  <Comment.Action as='span'>|</Comment.Action>
-                  <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>
-                  <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "upVote"))} link name='chevron up' /></Comment.Action>
-                  <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "downVote"))} link name='chevron down' /></Comment.Action>
-                </Comment.Actions>
-              </Comment.Content>
-            </Comment>
-          ))
-          : (
-            <div className="four-oh-four">
-              There are no comments for this post.
+        ) :(
+          <div>
+            {
+              (comments && comments.length > 0)
+              ? comments.map((comment) => (
+                <Comment key={comment.id}>
+                  <Comment.Content>
+                    <Comment.Author as='span'>
+                      {capitalize(comment.author)}
+                    </Comment.Author>
+                    <Comment.Metadata>
+                      <div>{moment(comment.timestamp).format('MMMM Do YYYY, h:mm a')}</div>
+                    </Comment.Metadata>
+                    <Comment.Text>{comment.body}</Comment.Text>
+                    <Comment.Actions>
+                      <Comment.Action>Edit</Comment.Action>
+                      <Comment.Action>Delete</Comment.Action>
+                      <Comment.Action as='span'>|</Comment.Action>
+                      <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>
+                      <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "upVote"))} link name='chevron up' /></Comment.Action>
+                      <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "downVote"))} link name='chevron down' /></Comment.Action>
+                    </Comment.Actions>
+                  </Comment.Content>
+                </Comment>
+              ))
+              : (
+                <div className="four-oh-four">
+                  There are no comments for this post.
+                </div>
+              )
+            }
+            <div className="add-comment">
+              <h4>Add a New Comment</h4>
+              <Form>
+                <Form.Input label='Author' placeholder='Your name' />
+                <Form.TextArea label="Content" placeholder="Your comment.."/>
+                <Button>Add Comment </Button>
+              </Form>
             </div>
-          )
+          </div>
+        )
         }
 
       </Comment.Group>

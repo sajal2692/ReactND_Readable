@@ -3,3 +3,7 @@ display: inline-block;
 margin: 0 .75em 0 0;
 color: rgba(0,0,0,.4);
 }
+
+.add-comment {
+  margin-top: 2em;
+}
