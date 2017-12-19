@@ -31,7 +31,7 @@ class Posts extends Component {
             Loading...
           </div>
         ) : (
-          <div className="content-container">
+          <div>
 
           { ((this.props.categories.length > 0 && this.props.categories.find(cat => cat.name === category)) || !category)
             ? (

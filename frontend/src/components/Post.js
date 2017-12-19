@@ -26,7 +26,7 @@ class Post extends Component {
           Loading...
         </div>
       ) : (
-        <div className="content-container">
+        <div>
           {post
             ? (
               <div className="post-container">
