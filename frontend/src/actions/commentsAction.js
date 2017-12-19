@@ -7,7 +7,6 @@
 //Fetch All comments (for a COMMENT)
 
 import * as API from '../utils/api'
-import * as uuid from 'uuid/v4'
 
 export const EDIT_COMMENT = 'EDIT_COMMENT' //TODO: Create action
 export const DELETE_COMMENT = 'DELETE_COMMENT' //TODO: Create action

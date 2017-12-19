@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { capitalize } from '../utils/helpers'
-import { Comment, Header, Icon, Form, Button } from 'semantic-ui-react'
+import { Comment, Header, Icon, Form } from 'semantic-ui-react'
 import { fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment } from '../actions/commentsAction'
 import moment from 'moment'
-import VoteScore from './VoteScore'
 
 import * as uuid4 from 'uuid/v4'
 
