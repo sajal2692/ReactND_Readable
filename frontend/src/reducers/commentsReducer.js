@@ -1,9 +1,8 @@
 import {
-  ADD_COMMENT,
   DELETE_COMMENT,
   RECEIVE_COMMENTS_BY_POST,
   LOADING_COMMENTS,
-  UPDATE_COMMENT
+  ADD_UPDATE_COMMENT
 } from '../actions/commentsAction'
 
 const initialCommentsState = {loading: true}
@@ -12,11 +11,6 @@ function comments (state = initialCommentsState, action) {
   const { loading, comment, comments, id } = action
 
   switch (action.type) {
-    case ADD_COMMENT:
-      return {
-        ...state,
-        [id]: comment //assuming whole object, not yet decided on what to pass through the action
-      }
 
     case DELETE_COMMENT:
       return {
@@ -40,7 +34,7 @@ function comments (state = initialCommentsState, action) {
         loading,
       }
 
-    case UPDATE_COMMENT:
+    case ADD_UPDATE_COMMENT:
       return {
         ...state,
         comments: {
