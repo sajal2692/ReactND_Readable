@@ -1,8 +1,7 @@
 import {
-  ADD_POST,
   DELETE_POST,
   RECEIVE_ALL_POSTS,
-  UPDATE_POST
+  ADD_UPDATE_POST
 } from '../actions/postsAction'
 
 const initialPostsState = {loading: true}
@@ -11,11 +10,6 @@ function posts (state = initialPostsState, action) {
   const { id, post, posts, loading} = action
 
   switch (action.type) {
-    case ADD_POST:
-      return {
-        ...state,
-        [id]: post //assuming whole object, not yet decided on what to pass through the action
-      }
 
     case DELETE_POST:
       return {
@@ -33,7 +27,7 @@ function posts (state = initialPostsState, action) {
         loading,
       }
 
-      case UPDATE_POST:
+      case ADD_UPDATE_POST:
         return {
           ...state,
           posts: {

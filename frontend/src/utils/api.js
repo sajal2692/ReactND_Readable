@@ -29,7 +29,22 @@ export const getPosts = () =>
       return posts
     },{}))
 
-//TODO: Post /posts
+export const addNewPost = post =>
+  fetch(`${api}/posts`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: post.timestamp,
+      body: post.body,
+      author: post.author,
+      title: post.title,
+      category: post.category
+    })
+  }).then(res => res.json());
+
+
+
 //TODO: Can probably generate uuid above
 
 export const getPostByID = (postId) =>

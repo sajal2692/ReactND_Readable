@@ -8,20 +8,28 @@
 //Fetch a post with details
 import * as API from '../utils/api'
 
-export const ADD_POST = 'ADD_POST' //TODO: Create Acton
 export const EDIT_POST = 'EDIT_POST' //TODO: Create Acton
 export const DELETE_POST = 'DELETE_POST' //TODO: Create Acton
-export const UPDATE_POST = 'UPDATE_POST'
+export const ADD_UPDATE_POST = 'ADD_UPDATE_POST'
 export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
 export const RECEIVE_POST = 'RECEIVE_POST'
 
-export function addPost ({id, post}) {
+export function addPost (post) {
   return {
-    type: ADD_POST,
-    id,
-    post, //the whole oject or maybe just the needed slice
+    type: ADD_UPDATE_POST,
+    id: post.id,
+    post,
   }
 }
+
+export const fetchAddPost = (post) => dispatch => (
+  API
+    .addNewPost(post)
+    .then(post => {
+      dispatch(addPost(post))
+    })
+)
+
 
 export function deletePost ({id}) {
   return {
@@ -32,7 +40,7 @@ export function deletePost ({id}) {
 
 export function updatePost(postId, post) {
   return {
-    type: UPDATE_POST,
+    type: ADD_UPDATE_POST,
     id: postId,
     post,
   }

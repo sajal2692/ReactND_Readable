@@ -5,6 +5,7 @@ import { Form } from 'semantic-ui-react'
 import { capitalize } from '../utils/helpers'
 import { connect } from 'react-redux'
 import * as uuid4 from 'uuid/v4'
+import { fetchAddPost } from '../actions/postsAction'
 
 import '../styles/AddOrEditPost.css'
 
@@ -47,8 +48,7 @@ class AddOrEditPost extends Component {
       author: post_author,
     }
 
-    // this.props.dispatch(fetchAddComment(comment));
-    console.log(post)
+    this.props.dispatch(fetchAddPost(post));
 
     this.setState({
       post_title: '',
