@@ -65,6 +65,14 @@ export const votePost = (postId, voteType) =>
 //TODO: PUT /posts/:id (edit post)
 //TODO: DELETE /posts/:id
 
+export const deletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: headers
+  })
+  .then(res => res.json())
+
+
 export const getCommentsByPost = (postId) =>
   fetch (`${api}/posts/${postId}/comments`, { headers })
   .then(res => res.json())

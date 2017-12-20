@@ -31,12 +31,21 @@ export const fetchAddPost = (post) => dispatch => (
 )
 
 
-export function deletePost ({id}) {
+export function deletePost (id, post) {
   return {
-    type: DELETE_POST,
-    id,
+    type: ADD_UPDATE_POST,
+    id: post.id,
+    post,
   }
 }
+
+export const fetchDeletePost = (postId) => dispatch => (
+  API
+    .deletePost(postId)
+    .then(post => {
+      dispatch(deletePost(post.id, post))
+    })
+)
 
 export function updatePost(postId, post) {
   return {

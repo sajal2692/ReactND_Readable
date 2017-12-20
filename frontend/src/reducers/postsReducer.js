@@ -11,14 +11,14 @@ function posts (state = initialPostsState, action) {
 
   switch (action.type) {
 
-    case DELETE_POST:
-      return {
-        ...state,
-        [id]: {
-          ...state[id],
-          deleted: true
-        }
-      }
+    // case DELETE_POST:
+    //   return {
+    //       ...state,
+    //       posts: {
+    //         ...state.posts,
+    //         [id]: null
+    //       }
+    //     }
 
     case RECEIVE_ALL_POSTS:
       return {

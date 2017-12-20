@@ -5,7 +5,7 @@ import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
 import { Icon, Statistic, Grid } from 'semantic-ui-react'
-import { fetchVotePost } from '../actions/postsAction'
+import { fetchVotePost, fetchDeletePost } from '../actions/postsAction'
 import moment from 'moment'
 
 import Comments from './Comments'
@@ -14,7 +14,12 @@ import '../styles/Post.css'
 
 class Post extends Component {
 
-  //TODO: Implement LOADING
+
+  handleDelete = (id) => {
+    this.props.dispatch(fetchDeletePost(id));
+    this.props.history.push('/')
+  }
+
   render() {
     const { post, loading  } = this.props
 
@@ -45,13 +50,19 @@ class Post extends Component {
                             <Statistic.Label>Score:</Statistic.Label>
                             <Statistic.Value>{post.voteScore}</Statistic.Value>
                           </Statistic>
-                        <Icon size='large' onClick={()=>this.props.dispatch(fetchVotePost(post.id, "downVote"))} link name='chevron down' />
+                        <Icon size='large' onClick={() => {
+                            this.props.dispatch(fetchVotePost(post.id, "downVote"));
+                            console.log('yeyah')
+                            this.props.history.push('/')}
+                          }
+                            link name='chevron down' />
+
                       </div>
                     </Grid.Column>
                     <Grid.Column>
                       <div className="edit-delete-container">
                         <Icon size="large" link name="edit"/>
-                        <Icon size="large" link name="trash outline"/>
+                        <Icon size="large" onClick={()=> this.handleDelete(post.id)} link name="trash outline"/>
                       </div>
                     </Grid.Column>
                   </Grid>
