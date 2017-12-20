@@ -90,7 +90,7 @@ class Comments extends Component {
               <h4>Add a New Comment</h4>
               <Form onSubmit={this.handleSubmit}>
                 <Form.Input required label='Author' name='add_comment_author' value={add_comment_author} onChange={this.handleChange} placeholder='Your name' />
-                <Form.TextArea required label="Content" name='add_comment_body' value={add_comment_body} onChange={this.handleChange} placeholder="Your comment.."/>
+                <Form.TextArea required label="Body" name='add_comment_body' value={add_comment_body} onChange={this.handleChange} placeholder="Your comment.."/>
                 <Form.Button>Add Comment</Form.Button>
               </Form>
             </div>

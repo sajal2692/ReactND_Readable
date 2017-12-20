@@ -43,3 +43,8 @@ i.trash.outline.large.icon {
 .post-comments {
   margin-top: 5em;
 }
+
+.post-date {
+  text-align: right;
+  margin-bottom: 1em;
+}

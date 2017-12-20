@@ -49,6 +49,7 @@ class AddOrEditPost extends Component {
     }
 
     this.props.dispatch(fetchAddPost(post));
+    this.props.history.push(`/${post_category}/${post.id}`)
 
     this.setState({
       post_title: '',
@@ -56,6 +57,7 @@ class AddOrEditPost extends Component {
       post_category: '',
       post_body: ''
     })
+
 
   }
 
