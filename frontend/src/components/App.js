@@ -6,7 +6,7 @@ import { fetchCategories } from '../actions/categoriesAction'
 
 import Posts from './Posts'
 import Post from './Post'
-import AddOrEditPost from './AddOrEditPost'
+import AddPost from './AddPost'
 
 import '../styles/App.css'
 
@@ -27,7 +27,7 @@ class App extends Component {
 
       <div>
         <Switch>
-          <Route path={"/newpost"} component={AddOrEditPost}/>
+          <Route path={"/newpost"} component={AddPost}/>
           <Route path={"/:category/:postid"} component={Post}/>
           <Route path={"/:category"} component={Posts}/>
           <Route exact path='/' component={Posts}/>

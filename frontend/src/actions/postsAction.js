@@ -83,3 +83,12 @@ export const fetchAllPosts = () => dispatch => (
     API
       .getPosts()
       .then(posts => dispatch(receiveAllPosts(posts))));
+
+
+export const fetchEditPost = (post) => dispatch => (
+  API
+    .editPost(post)
+    .then(post => {
+      dispatch(updatePost(post.id, post))
+    })
+)

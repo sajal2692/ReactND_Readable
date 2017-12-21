@@ -61,8 +61,15 @@ export const votePost = (postId, voteType) =>
   )
   .then(res => res.json())
 
-//TODO: PUT /posts/:id (edit post)
-
+export const editPost = post =>
+  fetch(`${api}/posts/${post.id}`, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify({
+      body: post.body,
+      title: post.title,
+    })
+  }).then(res => res.json());
 
 export const deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, {
@@ -80,7 +87,6 @@ export const getCommentsByPost = (postId) =>
     return comments
   },{}))
 
-//POST /comments
 
 export const addNewComment = (comment) =>
   fetch(`${api}/comments`, {
@@ -112,7 +118,6 @@ export const getCommentByID = (commentId) =>
     )
     .then(res => res.json())
 
-//TODO: PUT /comments/:id
 
 export const editComment = (comment) =>
   fetch(`${api}/comments/${comment.id}`, {

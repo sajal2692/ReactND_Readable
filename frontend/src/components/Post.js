@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
-import { Icon, Statistic, Grid } from 'semantic-ui-react'
-import { loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
+import { Icon, Statistic, Grid, Form, Button } from 'semantic-ui-react'
+import { fetchEditPost, loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
 import moment from 'moment'
 
 import Comments from './Comments'
@@ -14,15 +14,52 @@ import '../styles/Post.css'
 
 class Post extends Component {
 
+  state = {
+    editing_post: false,
+    edit_post_id: '',
+    edit_post_title: '',
+    edit_post_body: ''
+  }
+
+  handleEditingState = (id, title, body) => {
+    this.setState({
+      editing_post: true,
+      edit_post_id: id,
+      edit_post_title: title,
+      edit_post_body: body
+    })
+  }
+
+  handleEditCancel = () => {
+    this.setState({editing_post: false, edit_post_id: '', edit_post_title: '', edit_post_body: ''})
+  }
+
+  handleChange = (e, { name, value }) => this.setState({[name]: value});
+
+  handleEdit = (postId) => {
+    const {edit_post_id, edit_post_body, edit_post_title} = this.state
+
+    let post = {
+      id: edit_post_id,
+      title: edit_post_title,
+      body: edit_post_body
+    }
+
+    this.props.dispatch(fetchEditPost(post));
+
+    this.setState({editing_post: false, edit_post_id: '', edit_post_title: '', edit_post_body: ''})
+  }
+
 
   handleDelete = (id) => {
-    this.props.dispatch(loadingPosts());
+    this.props.dispatch(loadingPosts(true));
     this.props.dispatch(fetchDeletePost(id));
     this.props.history.push('/')
   }
 
   render() {
     const { post, loading  } = this.props
+    const {editing_post, edit_post_body, edit_post_title} = this.state
 
     return (
       <div>
@@ -62,22 +99,39 @@ class Post extends Component {
                     </Grid.Column>
                     <Grid.Column>
                       <div className="edit-delete-container">
-                        <Icon size="large" link name="edit"/>
+                        <Icon size="large" onClick={()=> this.handleEditingState(post.id, post.title, post.body)} link name="edit"/>
                         <Icon size="large" onClick={()=> this.handleDelete(post.id)} link name="trash outline"/>
                       </div>
                     </Grid.Column>
                   </Grid>
                 </div>
                 <PageHeader className="post-header">
-                  {post.title}
+                  {editing_post
+                    ? ("Edit Post")
+                    : (post.title)
+                  }
                   <small> by {capitalize(post.author)}</small>
                 </PageHeader>
-                <div className="post-body">
-                  {post.body}
-                </div>
-                <div className="post-comments">
-                  <Comments parentid={post.id}/>
-                </div>
+                {editing_post
+                  ? (
+                    <Form onSubmit={this.handleEdit}>
+                      <Form.Input required label="Title" name='edit_post_title' value={edit_post_title} onChange={this.handleChange}/>
+                      <Form.TextArea rows={10} required label="Body" name='edit_post_body' value={edit_post_body} onChange={this.handleChange}/>
+                      <Button>Update</Button>
+                      <a className="cancel-edit" onClick={()=>this.handleEditCancel()}>Cancel</a>
+                    </Form>
+                  )
+                  : (
+                    <div>
+                      <div className="post-body">
+                        {post.body}
+                      </div>
+                      <div className="post-comments">
+                        <Comments parentid={post.id}/>
+                      </div>
+                    </div>
+                  )
+                }
               </div>
             )
             : (
