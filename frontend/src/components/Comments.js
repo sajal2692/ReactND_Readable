@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { capitalize } from '../utils/helpers'
 import { Comment, Header, Icon, Form } from 'semantic-ui-react'
-import { fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment } from '../actions/commentsAction'
+import { fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment, fetchDeleteComment } from '../actions/commentsAction'
 import moment from 'moment'
 
 import * as uuid4 from 'uuid/v4'
@@ -22,6 +22,10 @@ class Comments extends Component {
   componentDidMount() {
     this.props.dispatch(loadingComments());
     this.props.dispatch(fetchCommentsByPost(this.props.parentid));
+  }
+
+  handleDelete = (id) => {
+    this.props.dispatch(fetchDeleteComment(id));
   }
 
   handleChange = (e, { name, value }) => this.setState({[name]: value});
@@ -71,7 +75,7 @@ class Comments extends Component {
                     <Comment.Text>{comment.body}</Comment.Text>
                     <Comment.Actions>
                       <Comment.Action>Edit</Comment.Action>
-                      <Comment.Action>Delete</Comment.Action>
+                      <Comment.Action onClick={() => this.handleDelete(comment.id)}>Delete</Comment.Action>
                       <Comment.Action as='span'>|</Comment.Action>
                       <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>
                       <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "upVote"))} link name='chevron up' /></Comment.Action>
@@ -108,7 +112,7 @@ function mapStateToProps(state, ownProps) {
   return {
     loading: state.comments.loading,
     comments: state.comments.comments
-          ? Object.keys(state.comments.comments).map((comment) => state.comments.comments[comment])
+          ? Object.keys(state.comments.comments).map((comment) => state.comments.comments[comment]).filter((comment)=>comment.deleted==false)
           : {}
   }
 }

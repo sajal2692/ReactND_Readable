@@ -114,4 +114,10 @@ export const getCommentByID = (commentId) =>
     .then(res => res.json())
 
 //TODO: PUT /comments/:id
-//TODO: DELETE /comments/:id
+
+export const deleteComment = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: headers
+  })
+  .then(res => res.json())

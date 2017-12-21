@@ -30,6 +30,22 @@ export const fetchAddComment = (comment) => dispatch => (
     })
 )
 
+export function deleteComment (id, comment) {
+  return {
+    type: ADD_UPDATE_COMMENT,
+    id: comment.id,
+    comment,
+  }
+}
+
+export const fetchDeleteComment = (commentId) => dispatch => (
+  API
+    .deleteComment(commentId)
+    .then(comment => {
+      dispatch(deleteComment(comment.id, comment))
+    })
+)
+
 export function receiveComments(comments) {
   return {
     type: RECEIVE_COMMENTS_BY_POST,
