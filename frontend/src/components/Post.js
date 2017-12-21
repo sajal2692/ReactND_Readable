@@ -5,7 +5,7 @@ import { PageHeader } from 'react-bootstrap'
 import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
 import { Icon, Statistic, Grid } from 'semantic-ui-react'
-import { fetchVotePost, fetchDeletePost } from '../actions/postsAction'
+import { loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
 import moment from 'moment'
 
 import Comments from './Comments'
@@ -16,6 +16,7 @@ class Post extends Component {
 
 
   handleDelete = (id) => {
+    this.props.dispatch(loadingPosts());
     this.props.dispatch(fetchDeletePost(id));
     this.props.history.push('/')
   }

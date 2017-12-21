@@ -82,3 +82,11 @@ export const fetchCommentsByPost = (postId) => dispatch => (
         dispatch(updateComment(commentId, comment))
       })
   );
+
+  export const fetchEditComment = (comment) => dispatch => {
+    API
+      .editComment(comment)
+      .then(comment => {
+        dispatch(updateComment(comment.id, comment))
+      })
+  }

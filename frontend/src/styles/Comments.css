@@ -7,3 +7,7 @@ color: rgba(0,0,0,.4);
 .add-comment {
   margin-top: 2em;
 }
+
+.edit-comment {
+  margin: 1em 0 1em 0;
+}
