@@ -11,3 +11,8 @@ color: rgba(0,0,0,.4);
 .edit-comment {
   margin: 1em 0 1em 0;
 }
+
+.cancel-edit {
+  color: rgba(0,0,0,.4);
+  cursor: pointer;
+}

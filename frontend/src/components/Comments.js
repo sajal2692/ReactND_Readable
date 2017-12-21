@@ -99,13 +99,13 @@ class Comments extends Component {
                     <div>
                       {edit_comment_id === comment.id
                         ? (
-                          <Form onSubmit={this.handleEdit} className="edit-comment">
-                            <Form.TextArea required name='edit_comment_body' value={edit_comment_body} onChange={this.handleChange} />
-                            <div>
-                              <Form.Button onClick={()=>this.handleEditCancel}>Cancel</Form.Button>
-                              <Form.Button>Update</Form.Button>
-                            </div>
-                          </Form>
+                          <div>
+                            <Form onSubmit={this.handleEdit} className="edit-comment">
+                              <Form.TextArea required name='edit_comment_body' value={edit_comment_body} onChange={this.handleChange} />
+                              <Button>Update</Button>
+                              <a className="cancel-edit" onClick={()=>this.handleEditCancel()}>Cancel</a>
+                            </Form>
+                          </div>
                         )
                         : (<Comment.Text>{comment.body}</Comment.Text>)
                       }
