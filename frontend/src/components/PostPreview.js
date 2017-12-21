@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Item, Icon } from 'semantic-ui-react'
+import { Item } from 'semantic-ui-react'
+import moment from 'moment'
 
 import VoteScore from './VoteScore'
 
@@ -19,7 +20,7 @@ class PostPreview extends Component {
                 {post.title}
               </Link>
             </Item.Header>
-            <Item.Meta>{post.author}</Item.Meta>
+            <Item.Meta>{post.author} on {moment(post.timestamp).format('MMMM Do YYYY')}</Item.Meta>
             <Item.Extra>{post.commentCount} Comments</Item.Extra>
           </Item.Content>
         </Item>

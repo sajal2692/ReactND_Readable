@@ -31,7 +31,7 @@ class Posts extends Component {
             Loading...
           </div>
         ) : (
-          <div className="content-container">
+          <div >
 
           { ((this.props.categories.length > 0 && this.props.categories.find(cat => cat.name === category)) || !category)
             ? (
@@ -77,7 +77,7 @@ function mapStateToProps(state) {
     loading: state.posts.loading,
     categories: state.categories,
     posts: state.posts.posts
-          ? Object.keys(state.posts.posts).map((post) => state.posts.posts[post])
+          ? Object.keys(state.posts.posts).map((post) => state.posts.posts[post]).filter((post) => post.deleted == false)
           : {}
   }
 }

@@ -29,7 +29,22 @@ export const getPosts = () =>
       return posts
     },{}))
 
-//TODO: Post /posts
+export const addNewPost = post =>
+  fetch(`${api}/posts`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: post.timestamp,
+      body: post.body,
+      author: post.author,
+      title: post.title,
+      category: post.category
+    })
+  }).then(res => res.json());
+
+
+
 //TODO: Can probably generate uuid above
 
 export const getPostByID = (postId) =>
@@ -50,6 +65,14 @@ export const votePost = (postId, voteType) =>
 //TODO: PUT /posts/:id (edit post)
 //TODO: DELETE /posts/:id
 
+export const deletePost = (postId) =>
+  fetch(`${api}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: headers
+  })
+  .then(res => res.json())
+
+
 export const getCommentsByPost = (postId) =>
   fetch (`${api}/posts/${postId}/comments`, { headers })
   .then(res => res.json())
@@ -58,7 +81,22 @@ export const getCommentsByPost = (postId) =>
     return comments
   },{}))
 
-//TODO: POST /comments
+//POST /comments
+
+export const addNewComment = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: comment.timestamp,
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId,
+    })
+  })
+  .then(res => res.json())
+
 //TODO: GET /comments/:id
 
 export const getCommentByID = (commentId) =>
@@ -76,4 +114,10 @@ export const getCommentByID = (commentId) =>
     .then(res => res.json())
 
 //TODO: PUT /comments/:id
-//TODO: DELETE /comments/:id
+
+export const deleteComment = (commentId) =>
+  fetch(`${api}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: headers
+  })
+  .then(res => res.json())
