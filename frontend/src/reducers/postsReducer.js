@@ -1,7 +1,8 @@
 import {
   DELETE_POST,
   RECEIVE_ALL_POSTS,
-  ADD_UPDATE_POST
+  ADD_UPDATE_POST,
+  LOADING_POSTS
 } from '../actions/postsAction'
 
 const initialPostsState = {loading: true}
@@ -19,6 +20,12 @@ function posts (state = initialPostsState, action) {
     //         [id]: null
     //       }
     //     }
+
+    case LOADING_POSTS:
+      return {
+        ...state,
+        loading,
+      }
 
     case RECEIVE_ALL_POSTS:
       return {

@@ -16,7 +16,7 @@ export const getCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-//TODO: Probably not needed? or needed when this page is directly navigated to
+
 export const getPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
@@ -45,7 +45,6 @@ export const addNewPost = post =>
 
 
 
-//TODO: Can probably generate uuid above
 
 export const getPostByID = (postId) =>
   fetch (`${api}/posts/${postId}`, { headers })
@@ -62,8 +61,15 @@ export const votePost = (postId, voteType) =>
   )
   .then(res => res.json())
 
-//TODO: PUT /posts/:id (edit post)
-//TODO: DELETE /posts/:id
+export const editPost = post =>
+  fetch(`${api}/posts/${post.id}`, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify({
+      body: post.body,
+      title: post.title,
+    })
+  }).then(res => res.json());
 
 export const deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, {
@@ -81,7 +87,6 @@ export const getCommentsByPost = (postId) =>
     return comments
   },{}))
 
-//POST /comments
 
 export const addNewComment = (comment) =>
   fetch(`${api}/comments`, {
@@ -113,7 +118,17 @@ export const getCommentByID = (commentId) =>
     )
     .then(res => res.json())
 
-//TODO: PUT /comments/:id
+
+export const editComment = (comment) =>
+  fetch(`${api}/comments/${comment.id}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify({
+      timestamp: comment.timestamp,
+      body: comment.body
+    })}
+  )
+  .then(res => res.json())
 
 export const deleteComment = (commentId) =>
   fetch(`${api}/comments/${commentId}`, {

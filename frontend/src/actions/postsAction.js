@@ -8,6 +8,7 @@
 //Fetch a post with details
 import * as API from '../utils/api'
 
+export const LOADING_POSTS = 'LOADING_POSTS'
 export const EDIT_POST = 'EDIT_POST' //TODO: Create Acton
 export const DELETE_POST = 'DELETE_POST' //TODO: Create Acton
 export const ADD_UPDATE_POST = 'ADD_UPDATE_POST'
@@ -30,6 +31,12 @@ export const fetchAddPost = (post) => dispatch => (
     })
 )
 
+export function loadingPosts(loading) {
+  return {
+    type: LOADING_POSTS,
+    loading,
+  }
+}
 
 export function deletePost (id, post) {
   return {
@@ -44,6 +51,7 @@ export const fetchDeletePost = (postId) => dispatch => (
     .deletePost(postId)
     .then(post => {
       dispatch(deletePost(post.id, post))
+      dispatch(loadingPosts(false))
     })
 )
 
@@ -75,3 +83,12 @@ export const fetchAllPosts = () => dispatch => (
     API
       .getPosts()
       .then(posts => dispatch(receiveAllPosts(posts))));
+
+
+export const fetchEditPost = (post) => dispatch => (
+  API
+    .editPost(post)
+    .then(post => {
+      dispatch(updatePost(post.id, post))
+    })
+)

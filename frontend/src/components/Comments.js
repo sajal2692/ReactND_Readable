@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { capitalize } from '../utils/helpers'
-import { Comment, Header, Icon, Form } from 'semantic-ui-react'
-import { fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment, fetchDeleteComment } from '../actions/commentsAction'
+import { Comment, Header, Icon, Form, Button } from 'semantic-ui-react'
+import { fetchEditComment, fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment, fetchDeleteComment } from '../actions/commentsAction'
 import moment from 'moment'
 
 import * as uuid4 from 'uuid/v4'
@@ -18,6 +18,30 @@ class Comments extends Component {
     add_comment_body: ''
   }
 
+  handleEditingState = (id, body) => {
+    this.setState({
+      edit_comment_id: id,
+      edit_comment_body: body
+    })
+  }
+
+  handleEdit = () => {
+    const {edit_comment_id, edit_comment_body} = this.state
+
+    let comment = {
+      id: edit_comment_id,
+      timestamp: Date.now(),
+      body: edit_comment_body
+    }
+
+    this.props.dispatch(fetchEditComment(comment));
+
+    this.setState({edit_comment_id: '', edit_comment_body: ''})
+  }
+
+  handleEditCancel = () => {
+    this.setState({edit_comment_id: '', edit_comment_body: ''})
+  }
 
   componentDidMount() {
     this.props.dispatch(loadingComments());
@@ -49,7 +73,7 @@ class Comments extends Component {
 
   render() {
     const { loading, comments } = this.props
-    const {add_comment_body, add_comment_author} = this.state
+    const {add_comment_body, add_comment_author, edit_comment_id, edit_comment_body} = this.state
 
     return (
       <Comment.Group>
@@ -72,9 +96,22 @@ class Comments extends Component {
                     <Comment.Metadata>
                       <div>{moment(comment.timestamp).format('MMMM Do YYYY, h:mm a')}</div>
                     </Comment.Metadata>
-                    <Comment.Text>{comment.body}</Comment.Text>
+                    <div>
+                      {edit_comment_id === comment.id
+                        ? (
+                          <div>
+                            <Form onSubmit={this.handleEdit} className="edit-comment">
+                              <Form.TextArea required name='edit_comment_body' value={edit_comment_body} onChange={this.handleChange} />
+                              <Button>Update</Button>
+                              <a className="cancel-edit" onClick={()=>this.handleEditCancel()}>Cancel</a>
+                            </Form>
+                          </div>
+                        )
+                        : (<Comment.Text>{comment.body}</Comment.Text>)
+                      }
+                    </div>
                     <Comment.Actions>
-                      <Comment.Action>Edit</Comment.Action>
+                      {!(edit_comment_id === comment.id) && (<Comment.Action onClick={() => this.handleEditingState(comment.id, comment.body)}>Edit</Comment.Action>)}
                       <Comment.Action onClick={() => this.handleDelete(comment.id)}>Delete</Comment.Action>
                       <Comment.Action as='span'>|</Comment.Action>
                       <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>

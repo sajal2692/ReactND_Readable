@@ -48,3 +48,7 @@ i.trash.outline.large.icon {
   text-align: right;
   margin-bottom: 1em;
 }
+
+.post-body {
+  white-space: pre;
+}
