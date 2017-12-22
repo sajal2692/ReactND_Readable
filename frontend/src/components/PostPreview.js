@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Item, Label } from 'semantic-ui-react'
 import moment from 'moment'
-import { fetchEditPost, loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
+import { fetchDeletePost } from '../actions/postsAction'
 import { connect } from 'react-redux'
 import VoteScore from './VoteScore'
 

@@ -155,7 +155,7 @@ function mapStateToProps(state, ownProps) {
   return {
     loading: state.comments.loading,
     comments: state.comments.comments
-          ? Object.keys(state.comments.comments).map((comment) => state.comments.comments[comment]).filter((comment)=>comment.deleted==false)
+          ? Object.keys(state.comments.comments).map((comment) => state.comments.comments[comment]).filter((comment)=>comment.deleted===false)
           : {}
   }
 }

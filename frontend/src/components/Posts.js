@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Navigation from './Navigation'
 import PostPreview from './PostPreview'
@@ -107,7 +105,7 @@ function mapStateToProps(state) {
     loading: state.posts.loading,
     categories: state.categories,
     posts: state.posts.posts
-          ? Object.keys(state.posts.posts).map((post) => state.posts.posts[post]).filter((post) => post.deleted == false)
+          ? Object.keys(state.posts.posts).map((post) => state.posts.posts[post]).filter((post) => post.deleted === false)
           : {}
   }
 }

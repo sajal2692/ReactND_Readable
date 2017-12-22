@@ -1,5 +1,4 @@
 import {
-  DELETE_POST,
   RECEIVE_ALL_POSTS,
   ADD_UPDATE_POST,
   LOADING_POSTS,
@@ -9,7 +8,7 @@ import {
 const initialPostsState = {loading: true}
 
 function posts (state = initialPostsState, action) {
-  const { id, post, posts, loading, commentCountChange, commentCount } = action
+  const { id, post, posts, loading, commentCountChange } = action
 
   switch (action.type) {
 

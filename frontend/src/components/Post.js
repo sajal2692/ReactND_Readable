@@ -6,7 +6,6 @@ import Navigation from './Navigation'
 import { capitalize } from '../utils/helpers'
 import { Icon, Statistic, Grid, Form, Button } from 'semantic-ui-react'
 import { fetchEditPost, loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
-import moment from 'moment'
 
 import Comments from './Comments'
 
@@ -158,10 +157,3 @@ function mapStateToProps(state, ownProps) {
 }
 
 export default connect(mapStateToProps)(Post);
-
-
-
-
-// <div className="post-date">
-//   {moment(post.timestamp).format('MMMM Do YYYY, h:mm a')}
-// </div>

@@ -62,8 +62,8 @@ export function loadingComments() {
 }
 
 export const fetchCommentsByPost = (postId) => dispatch => (
-  API.
-    getCommentsByPost(postId)
+  API
+    .getCommentsByPost(postId)
     .then(comments => dispatch(receiveComments(comments)))
   );
 

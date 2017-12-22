@@ -5,7 +5,7 @@ import {
 const initialCategoriesState = {}
 
 function categories (state = initialCategoriesState, action) {
-  const { categories, active } = action
+  const { categories } = action
 
   switch (action.type) {
     case RECEIVE_CATEGORIES:
