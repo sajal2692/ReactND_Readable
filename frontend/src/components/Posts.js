@@ -6,11 +6,17 @@ import Navigation from './Navigation'
 import PostPreview from './PostPreview'
 import { PageHeader } from 'react-bootstrap'
 import { capitalize } from '../utils/helpers'
-import { Item } from 'semantic-ui-react'
+import { Item, Form, Radio } from 'semantic-ui-react'
 import '../styles/Posts.css'
 
 
 class Posts extends Component {
+
+  state = {
+    sortBy: 'score'
+  }
+
+  handleChange = (e, { value }) => this.setState({sortBy: value})
 
   filterPostsByCategory= (category) => {
     return category
@@ -32,7 +38,6 @@ class Posts extends Component {
           </div>
         ) : (
           <div >
-
           { ((this.props.categories.length > 0 && this.props.categories.find(cat => cat.name === category)) || !category)
             ? (
               <div className="post-list">
@@ -42,12 +47,37 @@ class Posts extends Component {
                 </PageHeader>
                 {posts.length > 0
                 ? (
-                  <div className="posts-container">
-                    <Item.Group relaxed>
-                      {posts.map((post) => (
-                        <PostPreview key={post.id} post={post}/>
-                      ))}
-                    </Item.Group>
+                  <div>
+                    <div className="sorter">
+                      <Form>
+                        <Form.Field className="sorting-radios">
+                          Sorting By:
+                        <Radio
+                          label='Score'
+                          name='radioGroup'
+                          value='voteScore'
+                          checked={this.state.sortBy === 'voteScore'}
+                          onChange={this.handleChange}
+                          />
+                          <Radio
+                            label='Date'
+                            name='radioGroup'
+                            value='timestamp'
+                            checked={this.state.sortBy === 'timestamp'}
+                            onChange={this.handleChange}
+                            />
+                        </Form.Field>
+                      </Form>
+                    </div>
+                    <div className="posts-container">
+                      <Item.Group relaxed>
+                        {posts.sort(
+                          (a,b)=>a[this.state.sortBy] < b[this.state.sortBy])
+                          .map((post) => (
+                          <PostPreview key={post.id} post={post}/>
+                        ))}
+                      </Item.Group>
+                    </div>
                   </div>
                 )
                 : (
