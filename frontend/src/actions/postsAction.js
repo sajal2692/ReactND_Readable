@@ -9,8 +9,7 @@
 import * as API from '../utils/api'
 
 export const LOADING_POSTS = 'LOADING_POSTS'
-export const EDIT_POST = 'EDIT_POST' //TODO: Create Acton
-export const DELETE_POST = 'DELETE_POST' //TODO: Create Acton
+export const UPDATE_COMMENT_COUNT = 'UPDATE_COMMENT_COUNT'
 export const ADD_UPDATE_POST = 'ADD_UPDATE_POST'
 export const RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS'
 export const RECEIVE_POST = 'RECEIVE_POST'
@@ -20,6 +19,14 @@ export function addPost (post) {
     type: ADD_UPDATE_POST,
     id: post.id,
     post,
+  }
+}
+
+export function updateCommentCount (postId, commentCountChange) {
+  return {
+    type: UPDATE_COMMENT_COUNT,
+    id: postId,
+    commentCountChange,
   }
 }
 

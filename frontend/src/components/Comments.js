@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { capitalize } from '../utils/helpers'
 import { Comment, Header, Icon, Form, Button } from 'semantic-ui-react'
 import { fetchEditComment, fetchCommentsByPost, loadingComments, fetchVoteComment, fetchAddComment, fetchDeleteComment } from '../actions/commentsAction'
+import { updateCommentCount } from '../actions/postsAction'
+
 import moment from 'moment'
 
 import * as uuid4 from 'uuid/v4'
@@ -48,8 +50,9 @@ class Comments extends Component {
     this.props.dispatch(fetchCommentsByPost(this.props.parentid));
   }
 
-  handleDelete = (id) => {
+  handleDelete = (id, parentId) => {
     this.props.dispatch(fetchDeleteComment(id));
+    this.props.dispatch(updateCommentCount(parentId, -1));
   }
 
   handleChange = (e, { name, value }) => this.setState({[name]: value});
@@ -66,6 +69,7 @@ class Comments extends Component {
     }
 
     this.props.dispatch(fetchAddComment(comment));
+    this.props.dispatch(updateCommentCount(comment.parentId, 1));
 
     this.setState({add_comment_author: '', add_comment_body: ''})
 
@@ -112,7 +116,7 @@ class Comments extends Component {
                     </div>
                     <Comment.Actions>
                       {!(edit_comment_id === comment.id) && (<Comment.Action onClick={() => this.handleEditingState(comment.id, comment.body)}>Edit</Comment.Action>)}
-                      <Comment.Action onClick={() => this.handleDelete(comment.id)}>Delete</Comment.Action>
+                      <Comment.Action onClick={() => this.handleDelete(comment.id, comment.parentId)}>Delete</Comment.Action>
                       <Comment.Action as='span'>|</Comment.Action>
                       <Comment.Action as='span'>Score: {comment.voteScore}</Comment.Action>
                       <Comment.Action><Icon onClick={()=>this.props.dispatch(fetchVoteComment(comment.id, "upVote"))} link name='chevron up' /></Comment.Action>
