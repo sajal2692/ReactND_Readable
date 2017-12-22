@@ -87,13 +87,7 @@ class Post extends Component {
                             <Statistic.Label>Score:</Statistic.Label>
                             <Statistic.Value>{post.voteScore}</Statistic.Value>
                           </Statistic>
-                        <Icon size='large' onClick={() => {
-                            this.props.dispatch(fetchVotePost(post.id, "downVote"));
-                            console.log('yeyah')
-                            this.props.history.push('/')}
-                          }
-                            link name='chevron down' />
-
+                        <Icon size='large' onClick={() =>this.props.dispatch(fetchVotePost(post.id, "downVote"))} link name='chevron down' />
                       </div>
                     </Grid.Column>
                     <Grid.Column>
