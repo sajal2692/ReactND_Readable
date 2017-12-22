@@ -13,7 +13,7 @@ import '../styles/Posts.css'
 class Posts extends Component {
 
   state = {
-    sortBy: 'score'
+    sortBy: 'voteScore'
   }
 
   handleChange = (e, { value }) => this.setState({sortBy: value})
@@ -51,7 +51,7 @@ class Posts extends Component {
                     <div className="sorter">
                       <Form>
                         <Form.Field className="sorting-radios">
-                          Sorting By:
+                          <b>Sorting By: </b>
                         <Radio
                           label='Score'
                           name='radioGroup'
