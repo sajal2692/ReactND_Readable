@@ -15,10 +15,10 @@ import '../styles/Post.css'
 class Post extends Component {
 
   state = {
-    editing_post: false,
-    edit_post_id: '',
-    edit_post_title: '',
-    edit_post_body: ''
+    editing_post: this.props.location.state ? this.props.location.state.editing_post: false,
+    edit_post_id: this.props.location.state ? this.props.location.state.editing_post_id: '',
+    edit_post_title: this.props.location.state ? this.props.location.state.editing_post_title: '',
+    edit_post_body: this.props.location.state ? this.props.location.state.editing_post_body: ''
   }
 
   handleEditingState = (id, title, body) => {
@@ -127,7 +127,7 @@ class Post extends Component {
                         {post.body}
                       </div>
                       <div className="post-comments">
-                        <Comments parentid={post.id}/>
+                        <Comments parentNos={post.commentCount} parentid={post.id}/>
                       </div>
                     </div>
                   )

@@ -76,12 +76,14 @@ class Comments extends Component {
   }
 
   render() {
-    const { loading, comments } = this.props
+    const { loading, comments, parentNos } = this.props
     const {add_comment_body, add_comment_author, edit_comment_id, edit_comment_body} = this.state
 
     return (
       <Comment.Group>
-        <Header as='h3' dividing>Comments</Header>
+        <Header as='h3' dividing>
+          {parentNos} {parentNos === 1 ? (<span>Comment</span>): (<span>Comments</span>)}
+        </Header>
         {loading
         ? (
           <div className="four-oh-four">

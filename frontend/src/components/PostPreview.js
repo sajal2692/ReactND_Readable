@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Item } from 'semantic-ui-react'
+import { Item, Label } from 'semantic-ui-react'
 import moment from 'moment'
-
+import { fetchEditPost, loadingPosts, fetchVotePost, fetchDeletePost } from '../actions/postsAction'
+import { connect } from 'react-redux'
 import VoteScore from './VoteScore'
+
+import '../styles/PostPreview.css'
 
 class PostPreview extends Component {
 
+
+  handleDelete = (id) => {
+    this.props.dispatch(fetchDeletePost(id));
+  }
 
   render() {
 
@@ -21,7 +28,19 @@ class PostPreview extends Component {
               </Link>
             </Item.Header>
             <Item.Meta>{post.author} on {moment(post.timestamp).format('MMMM Do YYYY')}</Item.Meta>
-            <Item.Extra>{post.commentCount} Comments</Item.Extra>
+            <Item.Extra>{post.commentCount} {post.commentCount === 1 ? (<span>Comment</span>): (<span>Comments</span>)}</Item.Extra>
+            <Item.Extra>
+              <Link to={{ pathname: `/${post.category}/${post.id}`,
+                state: {
+                  editing_post: true,
+                  editing_post_id: post.id,
+                  editing_post_title: post.title,
+                  editing_post_body: post.body
+                }}}>
+                <Label className="pp-edit-post">Edit</Label>
+              </Link>
+              <Label className="pp-delete-post" onClick={()=>{this.handleDelete(post.id)}}>Delete</Label>
+              </Item.Extra>
           </Item.Content>
         </Item>
     )
@@ -29,4 +48,4 @@ class PostPreview extends Component {
 
 }
 
-export default PostPreview;
+export default connect()(PostPreview);
