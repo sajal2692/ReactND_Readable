@@ -2,7 +2,7 @@
 
 To run the application:
 
-- First, start the Backend Server:
+- First, start the backend server:
   1. ```cd api-server```
   2. ```npm install```
   3. ```npm start```
