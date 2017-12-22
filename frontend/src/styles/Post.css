@@ -52,3 +52,11 @@ i.trash.outline.large.icon {
 .post-body {
   white-space: pre;
 }
+
+.sorter {
+  text-align: right;
+}
+
+.sorting-radios .radio {
+  margin-left: 1em
+}
