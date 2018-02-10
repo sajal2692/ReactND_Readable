@@ -1,6 +1,14 @@
 # Readable
 
-To run the application:
+Project for the Redux course in Udacity's React Nanodegree.
+
+Readable is a minimalistic content-comment web application made using React and Redux.
+
+Users can write posts and comments, edit them, vote on them and, of course, read them. :)
+
+## [Demo](https://sajal-readable.herokuapp.com)
+
+## How to install and run:
 
 - First, start the backend server:
   1. ```cd api-server```
