@@ -20,3 +20,13 @@ Users can write posts and comments, edit them, vote on them and, of course, read
   1. ```cd frontend```
   2. ```npm install```
   3. ```npm start```
+
+## Screenshots
+
+#### Homepage
+
+![homepage](/screenshots/homepage.png)
+
+#### Post View
+
+![page-view](/screenshots/post.png)
